@@ -13,7 +13,7 @@ useEffect(() => {
 }, [])
 
 const getRandomRecipes = async () => {
-  const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?query=vegan&number=10&intolerances=gluten&apiKey=${keyAPI}`)
+  const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?query=vegan&number=11&intolerances=glute&addRecipeInformation=true&instructionsRequired=true&fillIngredients=true&apiKey=${keyAPI}`)
   const data = await response.json()
   console.log('data', data)
 }
