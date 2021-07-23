@@ -1,14 +1,14 @@
 import React from "react";
 
-export default function Recipe() {
+export default function Recipe({title, image, summary, diets}) {
   return (
     <div>
-      <h1>Title</h1>
-      <img src="" alt=""/>
-      <h3>Summary</h3>
-      <h4>Gluten free: </h4>
+      <h1>{title}</h1>
+      <img src={image} alt=""/>
+      <p>{summary}</p>
+      <h4>{diets} </h4>
       <h4>Ingredients: </h4>
-      <h4>
+      {/* <h4>
         Instructions:{" "}
         <ol>
           <li>Step 1: </li>
@@ -16,7 +16,7 @@ export default function Recipe() {
           <li>Step 3: </li>
           <li>Step 4: </li>
         </ol>
-      </h4>
+      </h4> */}
     </div>
   );
 }

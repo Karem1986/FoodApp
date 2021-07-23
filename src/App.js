@@ -14,15 +14,19 @@ useEffect(() => {
 const getRandomRecipes = async () => {
   const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?query=vegan&number=11&intolerances=glute&addRecipeInformation=true&instructionsRequired=true&fillIngredients=true&apiKey=${keyAPI}`)
   const data = await response.json()
-  console.log('data', data.results)
-setRecipes(data)
+  console.log(data.results)
+setRecipes(data.results)
 }
 
   return (
     <div className="App">
+      <form>
       <input type="text" />
       <button type='submit'>Search</button>
-      <Recipe />
+      </form>
+      {recipes.map(recipe => (
+        <Recipe title={recipe.title} summary={recipe.summary.replace(/[^a-zA-Z ]/g, "")} image={recipe.image} diet={recipe.glutenfree}/>
+      ))}
     </div>
   );
 }
