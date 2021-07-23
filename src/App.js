@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css';
 
+import Recipe from './components/Recipe';
+
 function App() {
-  //Random Recipes
+const [recipes, setRecipes] =useState([])
+
   const keyAPI = '309c92bbcb8d4dccb2872594735a1c3a'
-  // const randomRecipes = 'https://api.spoonacular.com/recipes/random'
-  // const pastaRecipes = 'https://api.spoonacular.com/recipes/complexSearch?query=pasta&apiKey=${keyAPI}'
-  // const vegetarianRecipes = 'https://api.spoonacular.com/recipes/complexSearch?query=vegetarian&apiKey=${keyAPI}'
-  // const veganGlutenFreeRecipes = 'https://api.spoonacular.com/recipes/complexSearch?query=vegan&number=15&intolerances=gluten&apiKey=${keyAPI}'
 useEffect(() => {
    getRandomRecipes();
 }, [])
@@ -15,13 +14,15 @@ useEffect(() => {
 const getRandomRecipes = async () => {
   const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?query=vegan&number=11&intolerances=glute&addRecipeInformation=true&instructionsRequired=true&fillIngredients=true&apiKey=${keyAPI}`)
   const data = await response.json()
-  console.log('data', data)
+  console.log('data', data.results)
+setRecipes(data)
 }
 
   return (
     <div className="App">
       <input type="text" />
       <button type='submit'>Search</button>
+      <Recipe />
     </div>
   );
 }
