@@ -34,7 +34,7 @@ if (recipes ) {
       </form>
 
       {recipes.map(recipe => (
-        <Recipe key={recipe.recipe.label} title={recipe.recipe.label} image={recipe.recipe.image} calories={recipe.recipe.calories} ingredients={recipe.recipe.ingredients}/>
+        <Recipe key={recipe.recipe.label} title={recipe.recipe.label} image={recipe.recipe.image} calories={recipe.recipe.calories.toString().slice( 0, -15)} ingredients={recipe.recipe.ingredients}/>
       ))}
     </div>
   );

@@ -9,7 +9,7 @@ export default function Recipe({title, image, calories, ingredients}) {
 <ul>{ingredients.map(ingredient => (
   <li> {ingredient.text}</li>
 ))}</ul>
-   <h5>{calories} </h5>
+   <h5> calories: {calories} </h5>
       {/* <h4>
         Instructions:{" "}
         <ol>
