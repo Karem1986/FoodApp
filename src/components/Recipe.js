@@ -1,13 +1,15 @@
 import React from "react";
 
-export default function Recipe({title, image, summary, diets}) {
+export default function Recipe({title, image, calories, ingredients}) {
   return (
     <div>
       <h1>{title}</h1>
       <img src={image} alt=""/>
-      <p>{summary}</p>
-      <h4>{diets} </h4>
-      <h4>Ingredients: </h4>
+      <h3>Ingredients: </h3>
+<ul>{ingredients.map(ingredient => (
+  <li> {ingredient.text}</li>
+))}</ul>
+   <h5>{calories} </h5>
       {/* <h4>
         Instructions:{" "}
         <ol>

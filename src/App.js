@@ -6,29 +6,42 @@ import Recipe from './components/Recipe';
 function App() {
 const [recipes, setRecipes] =useState([])
 
-  const keyAPI = '309c92bbcb8d4dccb2872594735a1c3a'
+  const edamamKey = 'ae9876408dc528b2a2ad00a22514ecf1	'
+  const edamanId = '77118711'
+
 useEffect(() => {
    getRandomRecipes();
 }, [])
 
-const getRandomRecipes = async () => {
-  const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?query=vegan&number=11&intolerances=glute&addRecipeInformation=true&instructionsRequired=true&fillIngredients=true&apiKey=${keyAPI}`)
-  const data = await response.json()
-  console.log(data.results)
-setRecipes(data.results)
+async function getRandomRecipes () {
+  try {
+    const response = await fetch(`https://api.edamam.com/search?q=vegan&app_id=${edamanId}&app_key=${edamamKey}`)
+    const data = await response.json()
+    console.log(data.hits)
+  setRecipes(data.hits)
+  } catch (error) {
+  console.log(error.message)
+  }
+
 }
 
+if (recipes ) {
   return (
     <div className="App">
       <form>
       <input type="text" />
       <button type='submit'>Search</button>
       </form>
+
       {recipes.map(recipe => (
-        <Recipe title={recipe.title} summary={recipe.summary.replace(/[^a-zA-Z ]/g, "")} image={recipe.image} diet={recipe.glutenfree}/>
+        <Recipe key={recipe.recipe.label} title={recipe.recipe.label} image={recipe.recipe.image} calories={recipe.recipe.calories} ingredients={recipe.recipe.ingredients}/>
       ))}
     </div>
   );
 }
+return <h1>No data, sorryyy</h1>
+}
+
+
 
 export default App;
