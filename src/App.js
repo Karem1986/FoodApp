@@ -43,10 +43,11 @@ if (recipes ) {
       <input type="text"  className="search-bar" value={search} onChange={searchHandlerOnForm}/>
       <button type='submit' className="search-button">Search</button>
       </form>
-
-      {recipes.map(recipe => (
+<div className="recipes">
+{recipes.map(recipe => (
         <Recipe key={recipe.recipe.label} title={recipe.recipe.label} image={recipe.recipe.image} calories={recipe.recipe.calories.toString().slice( 0, -15)} ingredients={recipe.recipe.ingredients}/>
       ))}
+</div>
     </div>
   );
 }

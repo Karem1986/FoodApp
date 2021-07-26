@@ -1,8 +1,9 @@
 import React from "react";
+import style from './recipe.module.css'
 
 export default function Recipe({title, image, calories, ingredients}) {
   return (
-    <div>
+    <div className={style.recipe}>
       <h1>{title}</h1>
       <img src={image} alt=""/>
       <h3>Ingredients: </h3>
