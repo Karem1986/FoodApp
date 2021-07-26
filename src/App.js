@@ -11,21 +11,31 @@ const [onSearchClick, setOnSearchClick ] = useState("vegan")
   const edamamKey = 'ae9876408dc528b2a2ad00a22514ecf1	'
   const edamanId = '77118711'
 
+// async function getRandomRecipes () {
+//   try {
+//     const response = await fetch(`https://api.edamam.com/search?q=${onSearchClick}&app_id=${edamanId}&app_key=${edamamKey}`)
+//     const data = await response.json()
+//     console.log(data.hits)
+//   setRecipes(data.hits)
+//   } catch (error) {
+//   console.log(error.message)
+//   }
+
+// }
 useEffect(() => {
-   getRandomRecipes();
-}, [onSearchClick])
-
-async function getRandomRecipes () {
-  try {
-    const response = await fetch(`https://api.edamam.com/search?q=${onSearchClick}&app_id=${edamanId}&app_key=${edamamKey}`)
-    const data = await response.json()
-    console.log(data.hits)
-  setRecipes(data.hits)
-  } catch (error) {
-  console.log(error.message)
+  async function getRandomRecipes () {
+    try {
+      const response = await fetch(`https://api.edamam.com/search?q=${onSearchClick}&app_id=${edamanId}&app_key=${edamamKey}`)
+      const data = await response.json()
+      console.log(data.hits)
+    setRecipes(data.hits)
+    } catch (error) {
+    console.log(error.message)
+    }
+  
   }
-
-}
+  getRandomRecipes();
+}, [onSearchClick]);
 
 const searchHandlerOnForm = (e) => {
   setSearch(e.target.value)
