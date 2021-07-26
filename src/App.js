@@ -5,17 +5,19 @@ import Recipe from './components/Recipe';
 
 function App() {
 const [recipes, setRecipes] =useState([])
+const [ search, setSearch ] = useState("")
+const [onSearchClick, setOnSearchClick ] = useState("vegan")
 
   const edamamKey = 'ae9876408dc528b2a2ad00a22514ecf1	'
   const edamanId = '77118711'
 
 useEffect(() => {
    getRandomRecipes();
-}, [])
+}, [onSearchClick])
 
 async function getRandomRecipes () {
   try {
-    const response = await fetch(`https://api.edamam.com/search?q=vegan&app_id=${edamanId}&app_key=${edamamKey}`)
+    const response = await fetch(`https://api.edamam.com/search?q=${onSearchClick}&app_id=${edamanId}&app_key=${edamamKey}`)
     const data = await response.json()
     console.log(data.hits)
   setRecipes(data.hits)
@@ -25,12 +27,20 @@ async function getRandomRecipes () {
 
 }
 
+const searchHandlerOnForm = (e) => {
+  setSearch(e.target.value)
+}
+const queryOnForm = (e) => {
+  e.preventDefault()
+  setOnSearchClick(search)
+}
+
 if (recipes ) {
   return (
     <div className="App">
-      <form>
-      <input type="text" />
-      <button type='submit'>Search</button>
+      <form onSubmit={queryOnForm} className="search-form">
+      <input type="text"  className="search-bar" value={search} onChange={searchHandlerOnForm}/>
+      <button type='submit' className="search-button">Search</button>
       </form>
 
       {recipes.map(recipe => (
