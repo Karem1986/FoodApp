@@ -33,6 +33,7 @@ const searchHandlerOnForm = (e) => {
 const queryOnForm = (e) => {
   e.preventDefault()
   setOnSearchClick(search)
+  setSearch("") //Resets the search input to empty again after click on search 
 }
 
 if (recipes ) {
